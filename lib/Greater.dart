@@ -6,6 +6,7 @@ class Greater extends StatefulWidget {
 }
 
 class _GreaterState extends State<Greater> {
+  String result="0";
   TextEditingController n1=TextEditingController();
   TextEditingController n2=TextEditingController();
   TextEditingController n3=TextEditingController();
@@ -17,73 +18,91 @@ class _GreaterState extends State<Greater> {
         appBar: AppBar(
           title: Text("Greater Number"),
         ),
-        body: Container(
-          child: Column(
-            children: <Widget>[
-              SizedBox(height: 5.0,),
-              TextField(
-                controller: n1,
-                decoration: InputDecoration(
-                  hintText: "Enter first number",
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(40.0)
+        body: SizedBox.expand(
+          child: Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(colors: [Colors.white70,Colors.grey]),
+            ),
+            child: Column(
+              children: <Widget>[
+                SizedBox(height: 5.0,),
+                TextField(
+                  style: TextStyle(color: Colors.indigo),
+                  controller: n1,
+                  decoration: InputDecoration(
+                    hintText: "Enter first number",
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(40.0)
+                    ),
+                    prefixIcon: Icon(Icons.filter_1)
                   ),
-                  prefixIcon: Icon(Icons.filter_1)
                 ),
-              ),
-              SizedBox(height: 5.0,),
-              TextField(
-                controller: n2,
-                decoration: InputDecoration(
-                    hintText: "Enter Second number",
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(40.0)
-                    ),
-                    prefixIcon: Icon(Icons.filter_2)
+                SizedBox(height: 5.0,),
+                TextField(
+                  style: TextStyle(color: Colors.indigo),
+                  controller: n2,
+                  decoration: InputDecoration(
+                      hintText: "Enter Second number",
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(40.0)
+                      ),
+                      prefixIcon: Icon(Icons.filter_2)
+                  ),
                 ),
-              ),
-              SizedBox(height: 5.0,),
-              TextField(
-                controller: n3,
-                decoration: InputDecoration(
-                    hintText: "Enter Third number",
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(40.0)
-                    ),
-                    prefixIcon: Icon(Icons.filter_3)
+                SizedBox(height: 5.0,),
+                TextField(
+                  style: TextStyle(color: Colors.indigo),
+                  controller: n3,
+                  decoration: InputDecoration(
+                      hintText: "Enter Third number",
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(40.0)
+                      ),
+                      prefixIcon: Icon(Icons.filter_3)
+                  ),
                 ),
-              ),
-              SizedBox(height: 5.0,),
-              RaisedButton(onPressed: (){
-                  var x=int.parse(n1.text);
-                  var y=int.parse(n2.text);
-                  var z=int.parse(n3.text);
-                  var l=0;
-                  if(x<y)
-                    {
-                      l=y;
+                SizedBox(height: 5.0,),
+                RaisedButton(onPressed: (){
+                    var x=int.parse(n1.text);
+                    var y=int.parse(n2.text);
+                    var z=int.parse(n3.text);
+                    var l=0;
+                    if(x<y)
+                      {
+                        l=y;
+                      }
+                    else
+                      {
+                      l=x;
                     }
-                  else
-                    {
-                    l=x;
-                  }
-                  if(l<z)
-                    {
-                      print(z);
-                    }
-                  else{
-                    print(l);
-                  }
+                    if(l<z)
+                      {
+                        setState(() {
+                          result=z.toString();
+                        });
+                      }
+                    else{
+                      setState(() {
+                        result=l.toString();
+                      });
 
+                    }
+
+                  },
+                  child: Text("Greater")),
+                Text(result,style: TextStyle(
+                  fontSize: 25.0,
+                  color: Colors.indigo
+                ),),
+                SizedBox(height: 10.0,),
+                RaisedButton(onPressed: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>NumberApp()));
                 },
-                child: Text("Greater")),
-              RaisedButton(onPressed: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context)=>NumberApp()));
-              },
-              child: Text("Back To MainPage"),),
+                child: Text("Back To MainPage"),),
 
 
-            ],
+              ],
+            ),
           ),
         ),
       ),
